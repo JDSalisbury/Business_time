@@ -16,3 +16,21 @@ class Restaurant(RestaurantBaseModel):
 
     def __str__(self):
         return self.name
+
+
+class Day(RestaurantBaseModel):
+    name = models.CharField(max_length=100)
+    abbr = models.CharField(max_length=3)
+
+    def __str__(self):
+        return self.name
+
+
+class Hour(RestaurantBaseModel):
+    day = models.ForeignKey(Day, on_delete=models.CASCADE)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    open = models.TimeField()
+    close = models.TimeField()
+
+    def __str__(self):
+        return f'{self.restaurant} - {self.day} - {self.open} - {self.close}'
