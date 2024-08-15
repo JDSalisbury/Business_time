@@ -21,6 +21,7 @@ class Restaurant(RestaurantBaseModel):
 class Day(RestaurantBaseModel):
     name = models.CharField(max_length=100)
     abbr = models.CharField(max_length=3)
+    is_weekend = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
