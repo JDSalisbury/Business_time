@@ -6,7 +6,8 @@ from .views import *
 
 router = DefaultRouter()
 
+router.register('', RestaurantViewset)
 
 urlpatterns = [
-    path('test/', TestView.as_view(), name='hello-world'),
+    path('upload/', UploadCSV.as_view(), name='hello-world'),
 ] + router.urls
