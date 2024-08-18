@@ -11,18 +11,18 @@ class RestaurantEntry:
         return f"{self.name}, hours={self.hours}"
 
 
-def break_hours_on_slash_and_strip(hours):
+def break_hours_on_slash_and_strip(hours) -> list:
     """
     Breaks down the hours string on the slash and strips the whitespace
-    input: "11:30 am - 10 pm / 11:30 am - 10 pm"
-    output: ["11:30 am - 10 pm", "11:30 am - 10 pm"]
+    input: "[Mon-Thu 11:30 am - 10 pm / Sat 11:30 am - 10 pm]"
+    output: ["Mon-Thu 11:30 am - 10 pm", "Sat 11:30 am - 10 pm"]
     """
 
     # also flattens the list since split returns a list
     return [item.strip() for hour in hours for item in hour.split('/')]
 
 
-def days_hour_range_break(hours):
+def days_hour_range_break(hours) -> tuple:
     """
     Breaks down the days and time range from the hours string
     input: "Mon-Thu 11:30 am - 10 pm"
