@@ -8,7 +8,7 @@ def populate_day_table(apps, schema_editor):
 
     initial_days = [
         {"name": "Monday", "abbr": "Mon", "is_weekend": False},
-        {"name": "Tuesday", "abbr": "Tue", "is_weekend": False},
+        {"name": "Tuesday", "abbr": "Tues", "is_weekend": False},
         {"name": "Wednesday", "abbr": "Wed", "is_weekend": False},
         {"name": "Thursday", "abbr": "Thu", "is_weekend": False},
         {"name": "Friday", "abbr": "Fri", "is_weekend": False},

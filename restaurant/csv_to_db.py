@@ -20,9 +20,9 @@ def day_range_to_list_of_days(day_range):
     """
     Takes a string of days in the format "Mon-Thu" and returns a list of days
     input: "Mon-Thu"
-    output: ["Mon", "Tue", "Wed", "Thu"]
+    output: ["Mon", "Tues", "Wed", "Thu"]
     """
-    days = ["Mon", "Tue", "Wed", "Thu",
+    days = ["Mon", "Tues", "Wed", "Thu",
             "Fri", "Sat", "Sun"]
     start, end = day_range.split('-')
     start_index = days.index(start)

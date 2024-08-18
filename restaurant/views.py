@@ -6,6 +6,6 @@ from file_parser.csv_reader import read_csv_file
 class TestView(APIView):
     def get(self, request):
 
-        read_csv_file('to_parse_files/small_list.csv')
+        read_csv_file('to_parse_files/Restaurant.csv')
 
         return Response({"message": "Hello, World!"})
