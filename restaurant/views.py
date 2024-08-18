@@ -28,15 +28,17 @@ class RestaurantViewset(GenericViewSet, ListModelMixin, RetrieveModelMixin):
         requested_time = request.query_params.get('time', None)
         if not requested_time:
             return Response({"message": "Please provide a time in the following format <Day>@<Time>"}, status=400)
-        day, time = requested_time.split('@')
 
-        if not day or not time:
-            return Response({"message": "Please provide both day and time"}, status=400)
+        try:
+            day, time = requested_time.split('@')
+        except ValueError:
+            return Response({"message": "Please provide a time in the following format <Day>@<Time>"}, status=400)
+
         day = day.capitalize()
+        time = time.lower()
+
         if day not in ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']:
             return Response({"message": "Invalid day provided"}, status=400)
-        if not time:
-            return Response({"message": "Please provide a time"}, status=400)
         if len(time.split(':')) != 2:
             print(time.split(':'))
             return Response({"message": "Invalid time format, please provide a time in the following format 1:23pm, 12:34am"}, status=400)

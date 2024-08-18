@@ -12,3 +12,16 @@ and returns a list of restaurants open at that time.
 6. Actually Parse file, with breaks on "," and "/" watching for any gotchas along the way. Make setup for Mon, Tues, Wed, Thu, Fri, Sat, Sun. "-" Character will setup a from first day to next day with said time. also making sure to take into account the possible additional days.
 7. Create endpoint to show info, possibly include django-filter? if there is enought to filter on.
 8. Contanerize for bonus points.
+
+Run Tests:
+
+```
+python manage.py test
+```
+
+Run Tests for Coverage and report:
+
+```
+coverage run ./manage.py test
+coverage report -m
+```
