@@ -1,15 +1,6 @@
 from .models import Restaurant, Hour, Day
-from datetime import datetime
 
-
-def convert_time(time_str):
-    # ChatGPTed
-    # Parse the time string to a datetime object
-    dt = datetime.strptime(time_str, "%I %p") if len(
-        time_str.split(':')) == 1 else datetime.strptime(time_str, "%I:%M %p")
-
-    # Convert to 24-hour format and return as HH:MM
-    return dt.strftime("%H:%M")
+from .time_conversions import convert_csv_time_to_db_time
 
 
 def is_day_range(day_range):
@@ -44,8 +35,8 @@ def csv_entry_to_restaurant_db(restaurant_entry):
             for day in days:
                 day_obj = Day.objects.get(abbr=day)
                 Hour.objects.update_or_create(restaurant=restaurant,
-                                              day=day_obj, open=convert_time(start), close=convert_time(end))
+                                              day=day_obj, open=convert_csv_time_to_db_time(start), close=convert_csv_time_to_db_time(end))
         else:
             day_obj = Day.objects.get(abbr=day)
             Hour.objects.update_or_create(restaurant=restaurant,
-                                          day=day_obj, open=convert_time(start), close=convert_time(end))
+                                          day=day_obj, open=convert_csv_time_to_db_time(start), close=convert_csv_time_to_db_time(end))
