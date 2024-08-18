@@ -1,5 +1,6 @@
 import csv
 from dataclasses import dataclass
+from restaurant.csv_to_db import csv_entry_to_restaurant_db
 
 
 @dataclass
@@ -73,8 +74,15 @@ def read_csv_file(file_path):
         for row in reader:
             restaurant_name = row[0]
             hours = row[1:]
-            parsed_hours = hour_parser(hours)
-            restaurant_entry = RestaurantEntry(restaurant_name, parsed_hours)
+            try:
+                parsed_hours = hour_parser(hours)
+                restaurant_entry = RestaurantEntry(
+                    restaurant_name, parsed_hours)
+                csv_entry_to_restaurant_db(restaurant_entry)
+            except Exception as e:
+                print(f"Error parsing {
+                      restaurant_name} with hours: {hours}: {e}")
+                continue
 
             restaurants.append(restaurant_entry)
 
