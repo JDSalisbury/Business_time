@@ -25,3 +25,17 @@ Run Tests for Coverage and report:
 coverage run ./manage.py test
 coverage report -m
 ```
+
+Curl command for results:
+
+```
+ curl -X GET http://localhost:8000/restaurants/open_restaurants/\?time\=Monday@12:00pm
+```
+
+Docker Setup:
+
+```
+docker build -t liine_app .
+docker run -d -p 8000:8000 --name my-django-container liine_app:latest
+docker ps
+```
